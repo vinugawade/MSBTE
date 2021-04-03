@@ -1,0 +1,65 @@
+.image-container {
+    /* background: url("../Img/Side-Img-left.jpg") center no-repeat; */
+    background: url("../Img/Side-Img-left.png") center no-repeat;
+    background-size: cover;
+    background-origin: content-box;
+    height: 106vh;
+    width: 100vw;
+    background-size: 100% 100%;
+}
+
+.form-container {
+    /* background-color: #a685e2; */
+    background-color: #7F7FD5;
+    background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    display: flex;
+    justify-content: center;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form-box .form-input {
+    position: relative;
+}
+
+.form-box .form-input {
+    position: absolute;
+    top: 80px;
+    padding-left: 20px;
+    color: black;
+}
+
+
+/* .form-box {
+    font-weight: bold;
+    color: #fff;
+} */
+
+
+/* .form-box .form-input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    padding-left: 45px;
+} */
+
+
+/*
+.form-box .form-input input::placeholder {
+    padding-left: 0px;
+}
+
+.form-box .form-input input:focus,
+.form-box .form-input input:valid {
+    border-bottom: 2px solid #48403d;
+} */

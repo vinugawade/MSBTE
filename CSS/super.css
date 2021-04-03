@@ -1,0 +1,80 @@
+.image-container {
+    background: url("../Img/Side-Img-right.jpg") center no-repeat;
+    /* background: url("../Img/Side-Img-right.png") center no-repeat; */
+    background-size: cover;
+    background-origin: content-box;
+    height: 106vh;
+    width: 100vw;
+    background-size: 100% 100%;
+}
+
+.form-container,
+main {
+    /* background-color: #a685e2; */
+    background-color: #7F7FD5;
+    background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    display: flex;
+    justify-content: center;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form-box .form-input {
+    position: relative;
+}
+
+.form-box .form-input {
+    position: absolute;
+    top: 80px;
+    padding-left: 20px;
+    color: black;
+}
+
+
+/* .image-container {
+    background: url("../Img/Side-Img-right.jpg") center no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: #a685e2;
+    display: flex;
+    justify-content: center;
+} */
+
+
+/*
+.form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+.form-box {
+    font-weight: bold;
+    color: #fff;
+}
+
+.form-box .form-input {
+    position: relative;
+}
+
+.form-box {
+    position: absolute;
+top: 80px;
+
+padding-left: 20px;
+font-size: 1rem;
+color: black;
+
+}
+*/
