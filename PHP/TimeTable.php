@@ -101,8 +101,11 @@
                             <input type="number" name="istudents_count" placeholder="No. of Students"
                                 id="students_count" min=0 class="form-control" required>
                         </div>
-                        <div class="form-group">
 
+                        <div class="form-group col-sm-3 col-md-3">
+                            <legend class="flabel"><i class="fas fa-users"></i> Required Block Count:</legend>
+                            <input type="number" name="iblock_count" placeholder="No. of Blocks" id="block_count"
+                            min=1 class="form-control" required>
                         </div>
                     </div>
                     <div class="container-fluid">
@@ -144,6 +147,7 @@
                                 <th scope="col">Subject</th>
                                 <th scope="col">Session</th>
                                 <th scope="col">Students</th>
+                                <th scope="col">Requ.Block</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -165,6 +169,7 @@
                                 <td><?php echo $row['subject']; ?></td>
                                 <td><?php echo $row['session']; ?></td>
                                 <td><?php echo $row['students_count']; ?></td>
+                                <td><?php echo $row['blocks']; ?></td>
                                 <td>
                                     <form action="../DataBase/Time-Table-DB.php#delete" method="POST">
                                         <input type="hidden" name="get_id" value="<?php echo $row['id']; ?>">

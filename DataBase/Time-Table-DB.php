@@ -10,7 +10,7 @@ if(isset($_POST['idone'])){
 function insert(){
             try{
 
-               $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare('INSERT INTO `TimeTable` VALUES (:icount, :iday, :idate, :itime, :idepartment, :iyear_sem, :ischeme, :isubject, :isession, :istudents_count)');
+               $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare('INSERT INTO `TimeTable` VALUES (:icount, :iday, :idate, :itime, :idepartment, :iyear_sem, :ischeme, :isubject, :isession, :istudents_count,:iblock_count)');
                $staterun->bindValue(':icount',getRowCount());
                $staterun->bindValue(':iday',@$_POST['iday']);
                $staterun->bindValue(':idate',@$_POST['idate']);
@@ -21,6 +21,7 @@ function insert(){
                $staterun->bindValue(':isubject',@$_POST['isubject']);
                $staterun->bindValue(':isession',@$_POST['isession']);
                $staterun->bindValue(':istudents_count',@$_POST['istudents_count']);
+               $staterun->bindValue(':iblock_count',@$_POST['iblock_count']);
 
                if($staterun->execute()){
 

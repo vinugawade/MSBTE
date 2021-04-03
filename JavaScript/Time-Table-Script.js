@@ -23,6 +23,7 @@ for (i = 1; i < document.getElementById('Time-Table-View').rows.length; i++) {
         document.getElementById("subject").innerHTML = "<option value=" + this.cells[7].innerHTML + ">" + this.cells[7].innerHTML + "</option>";
         document.getElementById("session").value = this.cells[8].innerHTML;
         document.getElementById("students_count").value = this.cells[9].innerHTML;
+        document.getElementById("block_count").value = this.cells[10].innerHTML;
         confirm("Now Update Data For Selected Date & Subject.");
     });
 }
@@ -99,3 +100,14 @@ function random_function() {
     document.getElementById("subject").innerHTML = string;
 }
 // DYNAMIC DROPDOWNS
+document.getElementById("students_count").addEventListener('input', function() {
+    var students = document.getElementById("students_count").value;
+    var count = (students / 30);
+    document.getElementById('block_count').value = Math.ceil(count);
+});
+
+document.getElementById("block_count").addEventListener('input', function() {
+    var students = document.getElementById("students_count").value;
+    var count = (students / 30);
+    document.getElementById('block_count').value = Math.ceil(count);
+});

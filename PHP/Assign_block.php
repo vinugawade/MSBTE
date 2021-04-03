@@ -12,8 +12,19 @@
     <meta name="theme-color" content="">
     </head>
     <body>
+<?php
+// $n="name1";
+// $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('CREATE TABLE '. $n .' ("id" INTEGER,"students_count" INTEGER)');
+// $select->execute();
 
-        <script src="" async defer></script>
+//  $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT * FROM `Students` WHERE');
+ $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT cast(round(students_count/30)+1 AS INT) AS Required_block, students_count FROM "TimeTable" ');
+ $select->execute();
+ $data = $select->fetchAll();
+        foreach(@$data as $row){
+            print("<br>".$row['Required_block']."    ".$row['students_count']);
+            }?>
+    <script src="" async defer></script>
     </body>
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
