@@ -40,13 +40,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="idate" class="col-md-12 flabel"><i class="fas fas fa-calendar-day"></i> Supervision Date:</label>
-                            <div class="col-md-12">
-                                <input class="form-control my-1" type="date" name="idate" id="date" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="idepartment" class="col-md-12 flabel"><i class="fas fa-building"></i> Select Department:</label>
                             <div class="col-md-12">
                                 <select class="form-control my-1" name="idepartment" id="department" required>
@@ -70,7 +63,7 @@
                             </div>
                         </div>
                     </form>
-                 </div>
+            </div>
                 </div>
             </div>
         </div>
@@ -84,22 +77,20 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Supervision Date</th>
-                                <th scope="col">Dept</th>
+                                <th scope="col">Department</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $staterun=(new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Supervisor` ORDER BY `date` ASC");
+                                $staterun=(new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Supervisor` ORDER BY `supervisor_name` ASC");
                                 $staterun->execute();
                                 $data = $staterun->fetchAll();
                                 foreach(@$data as $row){
-                           ?>
+                        ?>
                             <tr>
                                 <th scope="row"><?php echo $row['id']; ?></th>
                                 <td><?php echo $row['supervisor_name']; ?></td>
-                                <td><?php echo $row['date']; ?></td>
                                 <td><?php echo $row['department']; ?></td>
                                 <td>
                                     <form action="../DataBase/Supervisor-DB.php#delete" method="POST">

@@ -20,10 +20,9 @@ function insert(){
     } else {
         try{
 
-               $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare('INSERT INTO `Supervisor` VALUES (:icount, :isupervisor_name, :idate, :idepartment)');
+               $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare('INSERT INTO `Supervisor` VALUES (:icount, :isupervisor_name, :idepartment)');
                $staterun->bindValue(':icount',getRowCount());
                $staterun->bindValue(':isupervisor_name',@$_POST['isupervisor_name']);
-               $staterun->bindValue(':idate',@$_POST['idate']);
                $staterun->bindValue(':idepartment',@$_POST['idepartment']);
                if($staterun->execute()){
 
@@ -92,9 +91,8 @@ if(isset($_POST['update'])){
         } else {
             try{
 
-            $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `Supervisor` SET `supervisor_name`=:supervisor_name,`date`=:idate,`department`=:department WHERE `id`=:id");
+            $staterun=(new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `Supervisor` SET `supervisor_name`=:supervisor_name,`department`=:department WHERE `id`=:id");
             $staterun->bindValue(':supervisor_name',@$_POST['isupervisor_name']);
-            $staterun->bindValue(':idate',@$_POST['idate']);
             $staterun->bindValue(':department',@$_POST['idepartment']);
             $staterun->bindValue(':id',@$_POST['get_id']);
 
