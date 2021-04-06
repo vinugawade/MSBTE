@@ -43,26 +43,7 @@
     </div>
     <div><input type="submit" name="submit" value="Check"></div>
     </form>
-    <!-- <div>
-        <select name="department" id="idepartment" required>
-            <option value="">Select Department</option>
-            <?php
-            // $dept = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT * FROM `TimeTable` GROUP BY `department`');
-            // $dept->execute();
-            // $data = $dept->fetchAll();
-            // foreach (@$data as $row) {
-            //     echo "<option value=" . $row['department'] . ">" . $row['department'] . "</option>";
-            // }
-            ?>
-        </select>
-    </div> -->
 
-    <?php
-    // $n="name1";
-    // $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('CREATE TABLE '. $n .' ("id" INTEGER,"students_count" INTEGER)');
-    // $select->execute();
-    //  $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT * FROM `Students` WHERE');
-    ?>
    <?php if(isset($_POST['submit'])){ ?>
     <table>
         <tbody>
