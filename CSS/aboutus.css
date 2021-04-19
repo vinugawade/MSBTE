@@ -1,0 +1,95 @@
+body{
+    background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+}
+
+.team-area{
+    padding-top: 5%;
+}
+
+.single-team{
+    background-color: #000;
+    margin-bottom: 10px;
+}
+
+.single-team:hover .social{
+    cursor: pointer;
+    opacity: 1;
+    transform: rotateY(0deg) scale(1, 1);
+}
+
+.img-area{
+    overflow: hidden;
+    position: relative;
+}
+.img-area img{
+    width: 100%;
+}
+
+.img-area:hover img{
+    transform: scale(1.2);
+}
+
+.img-area img{
+    transition: all 0.4s ease 0s;
+}
+
+@media (max-width: 768px){
+    .img-area img{
+        display: inline-block;
+    }
+}
+
+.img-area .social{
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    transform: rotateY(180deg) scale(0.5, 0.5);
+}
+
+.img-area .social ul{
+    text-align: center;
+    position: relative;
+    top: 175px;
+}
+
+.img-area .social ul li a{
+    border: 1px solid #fff;
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.img-area .social ul li a:hover{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid transparent;
+}
+
+.img-text{
+    padding: 25px;
+    color: #fff;
+    text-align: center;
+}
+
+.img-text h4{
+    margin: 0 0 5px;
+    font-size: 30px;
+    font-family: bignoodletitling;
+    letter-spacing: 5px;
+}
+
+.img-text h5{
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

@@ -17,13 +17,14 @@ for (i = 1; i < document.getElementById('Time-Table-View').rows.length; i++) {
         document.getElementById("day").value = this.cells[1].innerHTML;
         document.getElementById("date").value = this.cells[2].innerHTML;
         document.getElementById("time").value = this.cells[3].innerHTML;
-        document.getElementById("scheme").innerHTML = "<option value=" + this.cells[6].innerHTML + ">" + this.cells[6].innerHTML + "</option>";
-        document.getElementById("department").value = this.cells[4].innerHTML;
-        document.getElementById("year_sem").value = this.cells[5].innerHTML;
-        document.getElementById("subject").innerHTML = "<option value=" + this.cells[7].innerHTML + ">" + this.cells[7].innerHTML + "</option>";
-        document.getElementById("session").value = this.cells[8].innerHTML;
-        document.getElementById("students_count").value = this.cells[9].innerHTML;
-        document.getElementById("block_count").value = this.cells[10].innerHTML;
+        document.getElementById("hour").value = this.cells[4].innerHTML;
+        document.getElementById("scheme").innerHTML = "<option value=" + this.cells[7].innerHTML + ">" + this.cells[7].innerHTML + "</option>";
+        document.getElementById("department").value = this.cells[5].innerHTML;
+        document.getElementById("year_sem").value = this.cells[6].innerHTML;
+        document.getElementById("subject").innerHTML = "<option value=" + this.cells[8].innerHTML + ">" + this.cells[8].innerHTML + "</option>";
+        document.getElementById("session").value = this.cells[9].innerHTML;
+        document.getElementById("students_count").value = this.cells[10].innerHTML;
+        document.getElementById("block_count").value = this.cells[11].innerHTML;
         confirm("Now Update Data For Selected Date & Subject.");
     });
 }
@@ -102,12 +103,12 @@ function random_function() {
 // DYNAMIC DROPDOWNS
 document.getElementById("students_count").addEventListener('input', function() {
     var students = document.getElementById("students_count").value;
-    var count = (students / 30);
+    var count = (students / 5);
     document.getElementById('block_count').value = Math.ceil(count);
 });
 
 document.getElementById("block_count").addEventListener('input', function() {
     var students = document.getElementById("students_count").value;
-    var count = (students / 30);
+    var count = (students / 5);
     document.getElementById('block_count').value = Math.ceil(count);
 });

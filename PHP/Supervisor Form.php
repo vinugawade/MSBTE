@@ -17,6 +17,27 @@
 
 
 <body class="row m-0">
+<header class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                <div class="container-fluid d-flex">
+                    <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link text-dark" aria-current="page" href="../index.html">Home</a>
+                            <a class="nav-link text-dark" href="./TimeTable.php">TimeTable</a>
+                            <a class="nav-link text-dark" href="./Students Form.php">Students</a>
+                            <a class="nav-link text-dark" href="./Supervisor Form.php">Superviser</a>
+                            <a class="nav-link text-dark" href="./Assign_block.php">Blocks</a>
+                        <a class="nav-link text-dark" href="./gen_notice_pdf.php">Notice</a>
+                            <a class="nav-link text-dark" href="../HTML/aboutus.html">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
     <main class="col-lg-6 p-0 m-0 px-lg-0">
         <div class="container-fluid p-0 m-0">
             <div class="row p-0 m-0">

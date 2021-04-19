@@ -13,45 +13,52 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="theme-color" content="">
 </head>
-<!-- style="background-color:rgb(238,174,202);background:radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);" -->
 
-<body class="d-flex h-100 text-center text-white" style="background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); ">
-
-    <div class="d-flex h-100 pt-4 pb-0 mx-auto flex-column">
-        <!-- style="background: #12c2e9;background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);" -->
-        <header class="mb-auto px-4">
-            <div>
-                <h3 class="float-md-start mb-0">MSBTE</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link active" aria-current="page" href="">About Us</a>
-                </nav>
+<body class="text-center text-white" style="background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); ">
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid d-flex">
+                <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link text-dark" aria-current="page" href="../index.html">Home</a>
+                        <a class="nav-link text-dark" href="./PHP/TimeTable.php">TimeTable</a>
+                        <a class="nav-link text-dark" href="./PHP/Students Form.php">Students</a>
+                        <a class="nav-link text-dark" href="./PHP/Supervisor Form.php">Superviser</a>
+                        <a class="nav-link text-dark" href="./PHP/Assign_block.php">Blocks</a>
+                        <a class="nav-link text-dark" href="./PHP/gen_notice_pdf.php">Notice</a>
+                        <a class="nav-link text-dark" href="./HTML/aboutus.html">About Us</a>
+                    </div>
+                </div>
             </div>
-        </header>
+        </nav>
+    </header>
+    <div class="pt-0 pb-5 mx-auto flex-column">
 
-        <main class="px-3 row m-0">
-            <h1 class="bp-5 m-0">Exam Management</h1>
+        <main class="px-3 pb-5 row m-0">
+            <h1 class="py-5 m-0">Exam Management</h1>
             <div class="row col-md-12 p-0 m-0">
                 <p class=" lead col-md-4 pt-5  p-0 m-0">
                     <a class="btn btn-lg btn-light fw-bold" href="./PHP/TimeTable.php " role="button "><i
                             class="fa fa-calendar "></i>&nbsp;Add Time-Table</a>
                 </p>
                 <p class="lead col-md-4 pt-5  p-0 m-0">
-                    <a class="btn btn-lg btn-light fw-bold" href="./PHP/Students Form.php " role="button "><i
-                            class="fa fa-graduation-cap "></i>&nbsp;Add Students</a>
+                    <a class="btn btn-lg btn-light fw-bold" href="./PHP/Students Form.php " role="button "><i class="fas fa-user-plus"></i>&nbsp;Add Students</a>
                 </p>
                 <p class="lead col-md-4 pt-5  p-0 m-0">
-                    <a class="btn btn-lg btn-light fw-bold" href="./PHP/Supervisor Form.php " role="button "><i
-                            class='fas fa-user-friends'></i>&nbsp;Add Supervisor</a>
+                    <a class="btn btn-lg btn-light fw-bold" href="./PHP/Supervisor Form.php " role="button "><i class="fas fa-chalkboard-teacher"></i>&nbsp;Add Supervisor</a>
                 </p>
             </div>
             <div class="row col-md-12 p-0 m-0">
                 <p class="lead col-md-4 pt-5 ">
                     <a class="btn btn-lg btn-light fw-bold " href="./PHP/Assign_block.php " role="button "><i
-                            class="fa fa-calendar "></i>&nbsp;Assign Block</a>
+                        class='fas fa-user-friends'></i>&nbsp;Assign Block</a>
                 </p>
                 <p class="lead col-md-4 pt-5 ">
-                    <a class="btn btn-lg btn-light fw-bold " href="./PHP/Students Form.php " role="button "><i
-                            class="fa fa-graduation-cap "></i>&nbsp;Add Students</a>
+                    <a class="btn btn-lg btn-light fw-bold " href="./PHP/gen_notice_pdf.php" role="button "><i class="fas fa-file-pdf"></i>&nbsp;Generate Supervisor Notice</a>
                 </p>
                 <p class="lead col-md-4 pt-5 ">
                     <a class="btn btn-lg btn-light fw-bold " href="./PHP/Supervisor Form.php " role="button "><i
@@ -59,11 +66,10 @@
                 </p>
             </div>
         </main>
-
-        <footer class="mt-auto text-white-50 ">
-            <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
-        </footer>
     </div>
+    <footer class="mt-5 pt-5 text-white-50 ">
+        <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
+    </footer>
 </body>
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>

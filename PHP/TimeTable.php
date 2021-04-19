@@ -19,13 +19,31 @@
 <!-- rgb(132, 140, 255) -->
 
 <body style="background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);">
-    <header>
-
-    </header>
+<header class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                <div class="container-fluid d-flex">
+                    <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link text-dark" aria-current="page" href="../index.html">Home</a>
+                            <a class="nav-link text-dark" href="./TimeTable.php">TimeTable</a>
+                            <a class="nav-link text-dark" href="./Students Form.php">Students</a>
+                            <a class="nav-link text-dark" href="./Supervisor Form.php">Superviser</a>
+                            <a class="nav-link text-dark" href="./Assign_block.php">Blocks</a>
+                        <a class="nav-link text-dark" href="./gen_notice_pdf.php">Notice</a>
+                            <a class="nav-link text-dark" href="./HTML/aboutus.html">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
     <main>
         <div class="container-fluid">
             <div class="card-deck">
-                <form action="../DataBase/Time-Table-DB.php#insert" method="POST" class="form-inline card m-3 p-3" role="form">
+                <form action="../DataBase/Time-Table-DB.php#insert" method="POST" class="form-inline card pt-5 m-3 p-3" role="form">
                     <div class="form-group card-header bg-dark text-white">
                         <legend>Fill TimeTable</legend>
                     </div>
@@ -43,6 +61,11 @@
                         <div class="form-group col-md-3">
                             <legend class="flabel"><i class="fas fa-clock"></i> Time:</legend>
                             <input type="time" name="itime" id="time" class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <legend class="flabel"><i class="fas fa-clock"></i> Hours:</legend>
+                            <input type="number" name="ihour" id="hour" min=1 placeholder="Exam hours" class="form-control" required>
                         </div>
 
                         <div class="form-group col-md-3">
@@ -141,6 +164,7 @@
                                 <th scope="col">Day</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
+                                <th scope="col">Hours</th>
                                 <th scope="col">Department</th>
                                 <th scope="col">Year/Sem</th>
                                 <th scope="col">Scheme</th>
@@ -157,12 +181,13 @@
                                 $staterun->execute();
                                 $data = $staterun->fetchAll();
                                 foreach(@$data as $row){
-                           ?>
+                        ?>
                             <tr>
                                 <th scope="row"><?php echo $row['id']; ?></th>
                                 <td><?php echo $row['day']; ?></td>
                                 <td><?php echo $row['date']; ?></td>
                                 <td><?php echo $row['time']; ?></td>
+                                <td><?php echo $row['hour']; ?></td>
                                 <td><?php echo $row['department']; ?></td>
                                 <td><?php echo $row['year_sem']; ?></td>
                                 <td><?php echo $row['scheme']; ?></td>
