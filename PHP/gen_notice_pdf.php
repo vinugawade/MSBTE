@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Generate PDF</title>
-    <link rel="icon" href="./Img/home.png" type="image/x-icon">
+    <link rel="icon" href="../Img/PDF.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../CSS/Global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/45cb967df4.js" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <meta name="theme-color" content="">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body class="text-center text-white" style="background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); ">
@@ -28,7 +31,7 @@
                         <a class="nav-link text-dark" href="./Students Form.php">Students</a>
                         <a class="nav-link text-dark" href="./Supervisor Form.php">Superviser</a>
                         <a class="nav-link text-dark" href="./Assign_block.php">Blocks</a>
-                        <a class="nav-link text-dark" href="./gen_notice_pdf.php">Notice</a>
+                        <a class="nav-link text-dark" href="./Gen_notice_pdf.php">Notice</a>
                         <a class="nav-link text-dark" href="../HTML/aboutus.html">About Us</a>
                     </div>
                 </div>
@@ -37,28 +40,70 @@
     </header>
     <div class="pt-0 pb-5 mx-auto flex-column">
         <main>
-            <div class="row py-3 mx-2">
-                <?php
-                $staterun = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Supervisor` ORDER BY `supervisor_name` ASC");
-                $staterun->execute();
-                $data = $staterun->fetchAll();
-                foreach (@$data as $row) {
+        <h1 class="m-0 p-lg-3 p-2">Select Supervisor</h1>
+        <div class="container-fluid p-0 m-0">
+            <div class="card-deck">
+                <div class="card-body p-0 m-lg-4">
+                    <table id="Notice-Table-View" class="table bg-light table-hover text-black" style="overflow-x:auto;">
+                        <thead class="thead table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $staterun=(new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Supervisor` ORDER BY `supervisor_name` ASC");
+                                $staterun->execute();
+                                $data = $staterun->fetchAll();
+                                foreach(@$data as $row){
+                        ?>
+                            <tr>
+                                <th scope="row"><?php echo $row['id']; ?></th>
+                                <td><?php echo $row['supervisor_name']; ?></td>
+                                <td><?php echo $row['department']; ?></td>
+                                <td>
+                                    <form action="./Generate_PDF.php" target="_blank" method="POST">
+                                        <input type="hidden" name="super_name" value="<?php echo $row['supervisor_name']; ?>">
 
-                    echo '
-      <div class="col-lg-6 col-sm-12 py-2 text-center">
-      <div style="min-height:60px; min-width:50%;" >
-      <form action="./Generate_PDF.php" method="POST">
-      <button type="submit" name="super_name" class="card col-lg-12 col-sm-12 py-2" value=' . str_replace(" ","-",$row["supervisor_name"]). '><h4><i class="fas fa-chalkboard-teacher"></i>&nbsp; ' . $row["supervisor_name"] . '</h4></button>
-      </form>
-      </div>
-      </div>
-      ';
-                }
-                ?>
+                                        <button class="btn btn-outline-danger btn-block"type="submit"><i
+                                                class="fas fa-trash-alt fa-sm">&nbsp;Generate PDF</i> </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php }?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </div>
+
+            <!-- <div class="row py-3 mx-2">
+                <?php
+                // $staterun = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Supervisor` ORDER BY `supervisor_name` ASC");
+                // $staterun->execute();
+                // $data = $staterun->fetchAll();
+                // foreach (@$data as $row) {
+
+    //                 echo '
+    //   <div class="col-lg-6 col-sm-12 py-2 text-center">
+    //   <div style="min-height:60px; min-width:50%;" >
+    //   <form action="./Generate_PDF.php" method="POST">
+    //   <button type="submit" name="super_name" class="card col-lg-12 col-sm-12 py-2" value=' . str_replace(" ","-",$row["supervisor_name"]). '><h4><i class="fas fa-chalkboard-teacher"></i>&nbsp; ' . $row["supervisor_name"] . '</h4></button>
+    //   </form>
+    //   </div>
+    //   </div>
+    //   ';
+                // }
+                ?>
+            </div> -->
     </div>
     </main>
 </body>
+    <!-- JavaScript -->
+    <script type=" text/javascript" src="../JavaScript/Gen_notice_pdf.js" charset="utf-8"></script>
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>

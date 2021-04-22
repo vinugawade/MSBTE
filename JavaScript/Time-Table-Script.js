@@ -28,6 +28,25 @@ for (i = 1; i < document.getElementById('Time-Table-View').rows.length; i++) {
         confirm("Now Update Data For Selected Date & Subject.");
     });
 }
+
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#Time-Table-View thead tr').clone(true).appendTo('#Time-Table-View thead');
+    $('#Time-Table-View thead tr:eq(1) th').each(function(i) {
+        $(this).html('<input type="text" placeholder="Find" style="width:80%;" />');
+
+        $('input', this).on('keyup change', function() {
+            if (table.column(i).search() !== this.value) {
+                table.column(i).search(this.value).draw();
+            }
+        });
+    });
+
+    var table = $('#Time-Table-View').DataTable({
+        paging: false,
+        pageLength: false
+    });
+});
 // TIME - TABLE GET ROW
 
 // DYNAMIC DROPDOWNS

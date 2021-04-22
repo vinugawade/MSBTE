@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About Us</title>
-    <link rel="icon" href="../Img/student.png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="../CSS/student.css">
+    <link rel="icon" href="../Img/aboutus.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../CSS/aboutus.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- FontAwesome -->
@@ -16,107 +16,7 @@
 </head>
 
 <style>
- body {
-  background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
-     background-repeat: no-repeat;
-     color: #000;
-     overflow-x: hidden
- }
 
- p {
-     color: #fff
- }
-
- h2 {
-     font-weight: bold;
-     margin-bottom: 40px;
-     padding-top: 40px;
-     color: #fff
- }
-
- @media (max-width:767px) {
-     h2 {
-         margin-bottom: 25px;
-         padding-top: 25px;
-         font-size: 24px
-     }
- }
-
- .intro {
-     font-size: 16px;
-     max-width: 500px;
-     margin: 0 auto
- }
-
- .intro p {
-     margin-bottom: 0
- }
-
- .people {
-     padding: 50px 0;
-     cursor: pointer
- }
-
- .item {
-     margin-bottom: 30px
- }
-
- .item .box {
-     text-align: center;
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-position: center;
-     height: 450px;
-     position: relative;
-     overflow: hidden
- }
-
- .item .cover {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background-color: rgba(31, 148, 255, 0.75);
-     transition: opacity 0.15s ease-in;
-     opacity: 0;
-     padding-top: 80px;
-     color: #fff;
-     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15)
- }
-
- .item:hover .cover {
-     opacity: 1
- }
-
- .item .name {
-     font-weight: bold;
-     margin-bottom: 8px
- }
-
- .item .title {
-     text-transform: uppercase;
-     font-weight: bold;
-     color: #bbd8fb;
-     letter-spacing: 2px;
-     font-size: 13px;
-     margin-bottom: 20px
- }
-
- .social {
-     font-size: 18px
- }
-
- .social a {
-     color: inherit;
-     margin: 0 10px;
-     display: inline-block;
-     opacity: 0.7
- }
-
- .social a:hover {
-     opacity: 1
- }
 </style>
 
 <body>
@@ -130,53 +30,63 @@
                 <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link text-dark" aria-current="page" href="../index.html">Home</a>
-                        <a class="nav-link text-dark" href="./TimeTable.php">TimeTable</a>
-                        <a class="nav-link text-dark" href="./Students Form.php">Students</a>
-                        <a class="nav-link text-dark" href="./Supervisor Form.php">Superviser</a>
-                        <a class="nav-link text-dark" href="./Assign_block.php">Blocks</a>
-                        <a class="nav-link text-dark" href="../HTML/aboutus.html">About Us</a>
+                        <a class="nav-link text-dark" href="../PHP/TimeTable.php">TimeTable</a>
+                        <a class="nav-link text-dark" href="../PHP/Students Form.php">Students</a>
+                        <a class="nav-link text-dark" href="../PHP/Supervisor Form.php">Superviser</a>
+                        <a class="nav-link text-dark" href="../PHP/Assign_block.php">Blocks</a>
+                        <a class="nav-link text-dark" href="../PHP/Gen_notice_pdf.php">Notice</a>
+                        <a class="nav-link text-dark " href="../HTML/aboutus.html ">About Us</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <!-- Section: Team v.2 -->
-<!-- Section: Team v.4 -->
-<!-- Section: Team v.2 -->
-<div class="team-grid">
-  <div class="container">
-      <div class="intro">
-          <h2 class="text-center">Meet Our Team</h2>
-          
-      </div>
-      <div class="row people d-flex justify-content-center">
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(../Img/vg1.jpg)">
-                  <div class="cover">
-                      <h3 class="name">Vinay Gawade</h3>
-                      <p class="title">Web Developer</p>
-                      <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(../Img/v_s.jpg)">
-                  <div class="cover">
-                      <h3 class="name">Vaibhav Salgaonkar</h3>
-                      <p class="title">Web Developer</p>
-                      <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4 col-lg-3 item">
-              <div class="box" style="background-image:url(../Img/yt1.jpg)">
-                  <div class="cover">
-                      <h3 class="name">Yadnesh Tendolkar</h3>
-                      <p class="title">Web Developer</p>
-                      <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+    <!-- Section: Team v.4 -->
+    <!-- Section: Team v.2 -->
+    <div class="team-grid ">
+        <div class="container ">
+            <div class="intro ">
+                <h2 class="text-center ">Meet Our Team</h2>
+
+            </div>
+            <div class="row people d-flex justify-content-center ">
+                <div class="col-md-4 col-lg-3 item ">
+                    <div class="box " style="background-image:url(../Img/vg1.jpg) ">
+                        <div class="cover ">
+                            <h3 class="name ">Vinay Gawade</h3>
+                            <p class="title ">Web Developer</p>
+                            <div class="social "><a href="# "><i class="fa fa-facebook-official "></i></a><a href="# "><i class="fa fa-twitter "></i></a><a href="# "><i class="fa fa-instagram "></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 item ">
+                    <div class="box " style="background-image:url(../Img/v_s.jpg) ">
+                        <div class="cover ">
+                            <h3 class="name ">Vaibhav Salgaonkar</h3>
+                            <p class="title ">Web Developer</p>
+                            <div class="social "><a href="# "><i class="fa fa-facebook-official "></i></a><a href="# "><i class="fa fa-twitter "></i></a><a href="# "><i class="fa fa-instagram "></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 item ">
+                    <div class="box " style="background-image:url(../Img/yt1.jpg) ">
+                        <div class="cover ">
+                            <h3 class="name ">Yadnesh Tendolkar</h3>
+                            <p class="title ">Web Developer</p>
+                            <div class="social "><a href="# "><i class="fa fa-facebook-official "></i></a><a href="# "><i class="fa fa-twitter "></i></a><a href="# "><i class="fa fa-instagram "></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- JavaScript -->
+<script type=" text/javascript " src="../JavaScript/Supervisor-Script.js " charset="utf-8 "></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js " integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi " crossorigin="anonymous "></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js " integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG " crossorigin="anonymous "></script>
+
+</html>

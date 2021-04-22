@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/45cb967df4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body class="row m-0">
@@ -29,7 +31,7 @@
                         <a class="nav-link text-dark" href="./Students Form.php">Students</a>
                         <a class="nav-link text-dark" href="./Supervisor Form.php">Superviser</a>
                         <a class="nav-link text-dark" href="./Assign_block.php">Blocks</a>
-                        <a class="nav-link text-dark" href="./gen_notice_pdf.php">Notice</a>
+                        <a class="nav-link text-dark" href="./Gen_notice_pdf.php">Notice</a>
                         <a class="nav-link text-dark" href="../HTML/aboutus.html">About Us</a>
                     </div>
                 </div>

@@ -14,3 +14,22 @@ for (i = 1; i < document.getElementById('Blocks-Table-View').rows.length; i++) {
 function updatesupervisor(supervisor, d) {
     window.location.assign("../DataBase/Assign-Block-DB.php?isupervisor=" + supervisor + "&dept=" + d + "&block_no=" + block_no + "&idate=" + idate + "&isession=" + isession + "&start=" + start + "&end=" + end + "&update=1#update");
 }
+
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#Blocks-Table-View thead tr').clone(true).appendTo('#Blocks-Table-View thead');
+    $('#Blocks-Table-View thead tr:eq(1) th').each(function(i) {
+        $(this).html('<input type="text" placeholder="Find" style="width:80%;" />');
+
+        $('input', this).on('keyup change', function() {
+            if (table.column(i).search() !== this.value) {
+                table.column(i).search(this.value).draw();
+            }
+        });
+    });
+
+    var table = $('#Blocks-Table-View').DataTable({
+        paging: false,
+        pageLength: false
+    });
+});

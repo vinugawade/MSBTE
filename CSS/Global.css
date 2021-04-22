@@ -4,3 +4,15 @@
     font-size: 1.50rem;
     color: black;
 }
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+#Student-Table-View_filter,
+#Blocks-Table-View_filter,
+#Supervisor-Table-View_filter,
+#Time-Table-View_filter,
+#Notice-Table-View_filter {
+    display: none;
+}

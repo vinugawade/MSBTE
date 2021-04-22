@@ -1,95 +1,103 @@
-body{
-    background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+body {
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);
+    background-repeat: no-repeat;
+    color: #000;
+    overflow-x: hidden
 }
 
-.team-area{
-    padding-top: 5%;
+p {
+    color: #fff
 }
 
-.single-team{
-    background-color: #000;
-    margin-bottom: 10px;
+h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    color: #fff
 }
 
-.single-team:hover .social{
-    cursor: pointer;
-    opacity: 1;
-    transform: rotateY(0deg) scale(1, 1);
-}
-
-.img-area{
-    overflow: hidden;
-    position: relative;
-}
-.img-area img{
-    width: 100%;
-}
-
-.img-area:hover img{
-    transform: scale(1.2);
-}
-
-.img-area img{
-    transition: all 0.4s ease 0s;
-}
-
-@media (max-width: 768px){
-    .img-area img{
-        display: inline-block;
+@media (max-width:767px) {
+    h2 {
+        margin-bottom: 25px;
+        padding-top: 25px;
+        font-size: 24px
     }
 }
 
-.img-area .social{
-    background-color: rgba(0,0,0,0.7);
-    position: absolute;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    transition: .5s;
-    transform: rotateY(180deg) scale(0.5, 0.5);
+.intro {
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto
 }
 
-.img-area .social ul{
+.intro p {
+    margin-bottom: 0
+}
+
+.people {
+    padding: 50px 0;
+    cursor: pointer
+}
+
+.item {
+    margin-bottom: 30px
+}
+
+.item .box {
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
     position: relative;
-    top: 175px;
+    overflow: hidden
 }
 
-.img-area .social ul li a{
-    border: 1px solid #fff;
+.item .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 148, 255, 0.75);
+    transition: opacity 0.15s ease-in;
+    opacity: 0;
+    padding-top: 80px;
     color: #fff;
-    display: block;
-    font-size: 20px;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15)
 }
 
-.img-area .social ul li a:hover{
-    background-color: #fff;
-    color: #000;
-    border: 1px solid transparent;
+.item:hover .cover {
+    opacity: 1
 }
 
-.img-text{
-    padding: 25px;
-    color: #fff;
-    text-align: center;
+.item .name {
+    font-weight: bold;
+    margin-bottom: 8px
 }
 
-.img-text h4{
-    margin: 0 0 5px;
-    font-size: 30px;
-    font-family: bignoodletitling;
-    letter-spacing: 5px;
-}
-
-.img-text h5{
-    font-size: 17px;
+.item .title {
     text-transform: uppercase;
     font-weight: bold;
+    color: #bbd8fb;
+    letter-spacing: 2px;
+    font-size: 13px;
+    margin-bottom: 20px
+}
+
+.social {
+    font-size: 18px
+}
+
+.social a {
+    color: inherit;
+    margin: 0 10px;
+    display: inline-block;
+    opacity: 0.7
+}
+
+.social a:hover {
+    opacity: 1
 }
