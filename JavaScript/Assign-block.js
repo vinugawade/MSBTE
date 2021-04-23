@@ -6,7 +6,9 @@ for (i = 1; i < document.getElementById('Blocks-Table-View').rows.length; i++) {
         isession = this.cells[2].innerHTML;
         start = this.cells[3].innerHTML;
         end = this.cells[4].innerHTML;
-        // confirm(block_no + idate + isession + start + end);
+        // document.getElementById('Blocks-Table-View').value = ;
+        // document.getElementById('Blocks-Table-View').value = ;
+        // document.getElementById('Blocks-Table-View').value = ;
     });
 }
 // ASSIGNMENT - TABLE GET ROW

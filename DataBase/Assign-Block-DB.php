@@ -117,6 +117,9 @@
     if (isset($_GET['update'])) {
         update();
     }
+    if (isset($_POST['update'])) {
+        updatesupervisor();
+    }
 
     function update()
     {
@@ -145,6 +148,25 @@
             echo "Exception: " . $d;
             echo "<script>alert('Error...');</script>";
             $staterun->errorCode();
+        }
+    }
+
+    function updatesupervisor(){
+        try {
+
+            $updatesuper = (new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `blocks` SET `supervisor`=NULL WHERE `block_no`=:iblock_no AND `ex_date`=:iex_date AND `session`=:isession");
+            $updatesuper->bindValue(':iblock_no', @$_POST['ublock_no']);
+            $updatesuper->bindValue(':iex_date', @$_POST['uex_date']);
+            $updatesuper->bindValue(':isession', @$_POST['usession']);
+
+            if ( $updatesuper->execute()) {
+                echo "<script>alert('Now Update Supvervisor.');</script>";
+                echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['uex_date']."&session=".$_POST['usession']."')</script>";
+            }
+        } catch (PDOException $d) {
+            echo "Exception: " . $d;
+            echo "<script>alert('Error...');</script>";
+            $updatesuper->errorCode();
         }
     }
     ?>

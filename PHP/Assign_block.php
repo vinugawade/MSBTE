@@ -64,7 +64,7 @@
                                         $dept->execute();
                                         $data = $dept->fetchAll();
                                         foreach (@$data as $row) {
-                                            echo "<option value=" . $row['date'] . ">" . $row['date'] . "</option>";
+                                            echo "<option value=" . $row['date'] . ">" . $row['date']."</option>";
                                         }
                                         ?>
                                     </select>
@@ -143,7 +143,7 @@
                                             $selectblock->execute();
                                             $data = $selectblock->fetchAll();
                                             foreach (@$data as $supervisor) {
-                                                echo "  <option value='" . $supervisor['supervisor_name'] . "' id='" . $supervisor['supervisor_name'] . "'>" . $supervisor['supervisor_name'] . "</option>";
+                                                echo "  <option value='" . $supervisor['supervisor_name'] . "' id='" . $supervisor['supervisor_name'] ."'>" . $supervisor['supervisor_name'] ." [".$supervisor['department']."]</option>";
                                             }
                                             echo "</select>
                                             <script>
@@ -160,13 +160,19 @@
                                         ?></td>
                                     <td>
                                         <form action="../DataBase/Students-DB.php#delete" method="GET">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['block_no']; ?>">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['ex_date']; ?>">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['session']; ?>">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['start']; ?>">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['end']; ?>">
-                                            <input type="hidden" name="get_id" value="<?php echo $row['supervisor']; ?>">
-                                            <button class="btn btn-danger btn-block btn-sm mt-1" type="submit" name="view"><span class="far fa-eye fa-sm">View</span></button>
+                                            <input type="hidden" value="<?php echo $row['block_no']; ?>">
+                                            <input type="hidden" value="<?php echo $row['ex_date']; ?>">
+                                            <input type="hidden" value="<?php echo $row['session']; ?>">
+                                            <input type="hidden" value="<?php echo $row['start']; ?>">
+                                            <input type="hidden" value="<?php echo $row['end']; ?>">
+                                            <input type="hidden" value="<?php echo $row['supervisor']; ?>">
+                                            <button class="btn btn-danger btn-block btn-sm mt-1 w-100" type="submit" name="view"><span class="far fa-eye fa-sm">View</span></button>
+                                        </form>
+                                        <form action="../DataBase/Assign-Block-DB.php#update" method="POST">
+                                            <input type="hidden" name="ublock_no" id="ublock_no" value="<?php echo $row['block_no']; ?>">
+                                            <input type="hidden" name="uex_date" id="uex_date" value="<?php echo $row['ex_date']; ?>">
+                                            <input type="hidden" name="usession" id="usession" value="<?php echo $row['session']; ?>">
+                                            <button class="btn btn-success btn-block btn-sm mt-1 w-100" type="submit" name="update"><span class="fas fa-edit fa-sm">Update</span></button>
                                         </form>
                                     </td>
                                 </tr>
