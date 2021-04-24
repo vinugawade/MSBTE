@@ -16,9 +16,9 @@
         for ($i = 1; $i <= $block_count; $i++) {
 
 
-        $get_dept = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT  `department` FROM `Students` WHERE `seat_no` BETWEEN '.$start.' AND '.$end.' GROUP BY `department` ORDER BY `seat_no` ASC');
-        $get_dept->execute();
-        $dept = $get_dept->fetchAll(PDO::FETCH_ASSOC);
+            $get_dept = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT  `department` FROM `Students` WHERE `seat_no` BETWEEN ' . $start . ' AND ' . $end . ' GROUP BY `department` ORDER BY `seat_no` ASC');
+            $get_dept->execute();
+            $dept = $get_dept->fetchAll(PDO::FETCH_ASSOC);
 
             $insertblock = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('INSERT INTO `blocks` VALUES (:iblock,:idate,:isession, :istart,:iend,null,:dept)');
             $insertblock->bindValue(":iblock", $i);
@@ -26,11 +26,10 @@
             $insertblock->bindValue(":iend", $end);
             $insertblock->bindValue(':idate', @$_POST['date']);
             $insertblock->bindValue(':isession', @$_POST['session']);
-            $insertblock->bindValue(':dept', str_replace("department","",preg_replace('/[^A-Za-z0-9\-]/', ' ', json_encode($dept))));
+            $insertblock->bindValue(':dept', str_replace("department", "", preg_replace('/[^A-Za-z0-9\-]/', ' ', json_encode($dept))));
             $insertblock->execute();
             $start += 5;
             $end += 5;
-
         }
         return true;
     }
@@ -53,26 +52,25 @@
             if ($_POST['session'] == 'Morning') {
                 if (@$fetch_data[0][1] == @$check_data[1][1]) {
                     // echo $_POST['session'] . "=" . $block_count . "=" . $check_data[1][1];
-                    echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['date']."&session=".$_POST['session']."')</script>";
+                    echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                 } else {
                     //INSERT
-                    if(insert_into_block($block_count)){
-                        echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['date']."&session=".$_POST['session']."')</script>";
+                    if (insert_into_block($block_count)) {
+                        echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                     }
                 }
             } else {
                 if (@$fetch_data[0][1] == @$check_data[0][1]) {
                     // echo  $_POST['session'] . "=" . $block_count . "=" . $check_data[0][1]."=".$fetch_data[0][1];
                     // echo"<pre>";print_r($fetch_data);print_r($check_data);
-                    echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['date']."&session=".$_POST['session']."')</script>";
+                    echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                 } else {
                     //INSERT
-                    if(insert_into_block($block_count)){
-                        echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['date']."&session=".$_POST['session']."')</script>";
+                    if (insert_into_block($block_count)) {
+                        echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                     }
                 }
             }
-
         } catch (PDOException $d) {
             echo "Exception: " . $d;
             echo "<script>alert('Error...');</script>";
@@ -124,34 +122,56 @@
     function update()
     {
         try {
+            $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT `department` FROM `supervisor` WHERE `supervisor_name`=:isupervisor");
+            $getdata->bindValue(':isupervisor', @$_GET['isupervisor']);
+            $getdata->execute();
+            $data = $getdata->fetchAll();
+            foreach (@$data as $row) {
+                $dept = $row['department'];
+            }
 
-            $staterun = (new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `blocks` SET `supervisor`=:isupervisor WHERE `block_no`=:block_no AND `ex_date`=:idate AND `session`=:isession AND `start`=:istart AND `end`=:iend ");
-            $staterun->bindValue(':isupervisor', @$_GET['isupervisor']);
-            $staterun->bindValue(':block_no', @$_GET['block_no']);
-            $staterun->bindValue(':idate', @$_GET['idate']);
-            $staterun->bindValue(':isession', @$_GET['isession']);
-            $staterun->bindValue(':istart', @$_GET['start']);
-            $staterun->bindValue(':iend', @$_GET['end']);
+            $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `blocks` WHERE `session`=:isession AND `ex_date`=:idate AND`supervisor`=:isupervisor");
 
-            $insertsuper = (new PDO("sqlite:./ExamDB.db"))->prepare("INSERT INTO 'super_notice' VALUES (:super_name, :dept,:idate, :isession,:block_no);");
-            $insertsuper->bindValue(':super_name', @$_GET['isupervisor']);
-            $insertsuper->bindValue(':dept', @$_GET['dept']);
-            $insertsuper->bindValue(':idate', @$_GET['idate']);
-            $insertsuper->bindValue(':isession', @$_GET['isession']);
-            $insertsuper->bindValue(':block_no', @$_GET['block_no']);
+            $getdata->execute(
+                array(
+                ':isupervisor' => @$_GET['isupervisor'],
+                ':idate' => @$_GET['idate'],
+                ':isession' => @$_GET['isession'],
+            )
+        );
+            if (count($getdata->fetchAll()) >= 1) {
+                echo "<script>alert('This Supervisor is Already Assigned.');</script>";
+                echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_GET['idate'] . "&session=" . $_GET['isession'] . "')</script>";
+            } else {
+                $staterun = (new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `blocks` SET `supervisor`=:isupervisor WHERE `block_no`=:block_no AND `ex_date`=:idate AND `session`=:isession AND `start`=:istart AND `end`=:iend ");
+                $staterun->bindValue(':isupervisor', @$_GET['isupervisor']);
+                $staterun->bindValue(':block_no', @$_GET['block_no']);
+                $staterun->bindValue(':idate', @$_GET['idate']);
+                $staterun->bindValue(':isession', @$_GET['isession']);
+                $staterun->bindValue(':istart', @$_GET['start']);
+                $staterun->bindValue(':iend', @$_GET['end']);
 
-            if ($staterun->execute() && $insertsuper->execute()) {
-                echo "<script>alert('Supvervisor Set.');</script>";
-                echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_GET['idate']."&session=".$_GET['isession']."')</script>";
+                $insertsuper = (new PDO("sqlite:./ExamDB.db"))->prepare("INSERT INTO 'super_notice' VALUES (:super_name, :dept,:idate, :isession,:block_no);");
+                $insertsuper->bindValue(':super_name', @$_GET['isupervisor']);
+                $insertsuper->bindValue(':dept', $dept);
+                $insertsuper->bindValue(':idate', @$_GET['idate']);
+                $insertsuper->bindValue(':isession', @$_GET['isession']);
+                $insertsuper->bindValue(':block_no', @$_GET['block_no']);
+
+                if ($staterun->execute() && $insertsuper->execute()) {
+                    echo "<script>alert('Supvervisor Set.');</script>";
+                    echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_GET['idate'] . "&session=" . $_GET['isession'] . "')</script>";
+                }
             }
         } catch (PDOException $d) {
             echo "Exception: " . $d;
             echo "<script>alert('Error...');</script>";
-            $staterun->errorCode();
+            // $staterun->errorCode();
         }
     }
 
-    function updatesupervisor(){
+    function updatesupervisor()
+    {
         try {
 
             $updatesuper = (new PDO("sqlite:./ExamDB.db"))->prepare("UPDATE `blocks` SET `supervisor`=NULL WHERE `block_no`=:iblock_no AND `ex_date`=:iex_date AND `session`=:isession");
@@ -159,9 +179,9 @@
             $updatesuper->bindValue(':iex_date', @$_POST['uex_date']);
             $updatesuper->bindValue(':isession', @$_POST['usession']);
 
-            if ( $updatesuper->execute()) {
+            if ($updatesuper->execute()) {
                 echo "<script>alert('Now Update Supvervisor.');</script>";
-                echo "<script>window.location.assign('../PHP/Assign_block.php?date=".$_POST['uex_date']."&session=".$_POST['usession']."')</script>";
+                echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['uex_date'] . "&session=" . $_POST['usession'] . "')</script>";
             }
         } catch (PDOException $d) {
             echo "Exception: " . $d;

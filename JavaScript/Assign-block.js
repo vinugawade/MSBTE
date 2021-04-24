@@ -6,15 +6,12 @@ for (i = 1; i < document.getElementById('Blocks-Table-View').rows.length; i++) {
         isession = this.cells[2].innerHTML;
         start = this.cells[3].innerHTML;
         end = this.cells[4].innerHTML;
-        // document.getElementById('Blocks-Table-View').value = ;
-        // document.getElementById('Blocks-Table-View').value = ;
-        // document.getElementById('Blocks-Table-View').value = ;
     });
 }
 // ASSIGNMENT - TABLE GET ROW
 
-function updatesupervisor(supervisor, d) {
-    window.location.assign("../DataBase/Assign-Block-DB.php?isupervisor=" + supervisor + "&dept=" + d + "&block_no=" + block_no + "&idate=" + idate + "&isession=" + isession + "&start=" + start + "&end=" + end + "&update=1#update");
+function updatesupervisor(supervisor) {
+    window.location.assign("../DataBase/Assign-Block-DB.php?isupervisor=" + supervisor + "&block_no=" + block_no + "&idate=" + idate + "&isession=" + isession + "&start=" + start + "&end=" + end + "&update=1#update");
 }
 
 $(document).ready(function() {

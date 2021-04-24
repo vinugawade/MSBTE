@@ -18,8 +18,8 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Vinay Gawade');
 $pdf->SetTitle('Supervisor Notice');
-$pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+$pdf->SetSubject('Supervisor Notice Generation into PDF');
+$pdf->SetKeywords('Supervisor, PDF, Notice');
 
 // set default header data
 // $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
@@ -55,11 +55,10 @@ $pdf->SetFont('dejavusans', '', 10);
 
 // // add a page
 $pdf->AddPage();
-
 function dataprint()
 {
     $send = null;
-    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . str_replace('-', ' ', $_POST['super_name']) . "' GROUP BY `date`";
+    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . $_POST['super_name'] . "' GROUP BY `date`";
     $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare($sql);
     $getdata->execute();
     $data = $getdata->fetchAll();
@@ -78,7 +77,7 @@ function dataprint()
 function morningsession()
 {
     $send = null;
-    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . str_replace('-', ' ', $_POST['super_name']) . "'ORDER BY `date`";
+    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . $_POST['super_name'] . "'ORDER BY `date`";
     $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare($sql);
     $getdata->execute();
     $data = $getdata->fetchAll();
@@ -98,7 +97,7 @@ function morningsession()
 function afternoonsession()
 {
     $send = null;
-    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . str_replace('-', ' ', $_POST['super_name']) . "'ORDER BY `date`";
+    $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . $_POST['super_name'] . "'ORDER BY `date`";
     $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare($sql);
     $getdata->execute();
     $data = $getdata->fetchAll();
@@ -115,7 +114,9 @@ function afternoonsession()
     return $send;
 }
 $year = date("Y");
-$super_name = str_replace("-", " ", @$_POST['super_name']);
+$super_name = @$_POST['super_name'];
+$morning_time=$_POST['morning-time'];
+$afternoon_time=$_POST['afternoon-time'];
 
 
 $html = '
@@ -194,8 +195,8 @@ $html = '
 </p>
 <p>
     <strong>Morning</strong>
-    : 9:00 A.M.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Afternoon</strong>
-    : 1:40 P.M.
+    : '.$morning_time.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Afternoon</strong>
+    : '.$afternoon_time.'
 
 </p>
 <p>
