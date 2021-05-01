@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Creates an example PDF TEST document using TCPDF
- * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: WriteHTML and RTL support
- * @author Nicola Asuni
- * @since 2008-03-04
- */
-
 // Include the main TCPDF library (search for installation path).
 require_once('./includes/TCPDF/tcpdf.php');
 
@@ -55,16 +47,12 @@ $pdf->SetFont('dejavusans', '', 10);
 
 // // add a page
 $pdf->AddPage();
-class cellchk{
+class cellchk
+{
     public  $idate;
-function dataprint($cell)
-{   $send=null;
-    // $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * ,(SELECT `date` FROM `super_notice` WHERE `super_name`=:iname GROUP BY `date`) AS `idate` FROM `super_notice` WHERE `super_name`=:iname GROUP BY `date`");
-    // $getdata->bindValue(':iname', @$_POST['super_name']);
-    // $getdata->execute();
-    // $data = $getdata->fetchAll(PDO::FETCH_ASSOC);
-    // foreach (@$data as $row) {
-    //     echo"<pre>";print_r($row);
+    function dataprint($cell)
+    {
+        $send = null;
         switch ($cell) {
 
             case 1:
@@ -72,110 +60,46 @@ function dataprint($cell)
                 $getdata->bindValue(':iname', @$_POST['super_name']);
                 $getdata->execute();
                 $data = $getdata->fetchAll(PDO::FETCH_ASSOC);
-                // echo"<pre>";print_r(count($data));
-                for ($i=0; $i < count($data); $i++) {
-                // echo"<pre>";print_r($data);
-                $this->idate.=$data[$i]['date'].",";
-                $send .= '<td width="40"><strong>' . $data[$i]['date'] . '</strong></td>';
+                for ($i = 0; $i < count($data); $i++) {
+                    $this->idate .= $data[$i]['date'] . ",";
+                    $send .= '<td width="40"><strong>' . $data[$i]['date'] . '</strong></td>';
                 }
-                // return $send;
-                  break;
-              case 2:
-                // echo"<pre>";print_r(explode(",",$this->idate));
-                // echo"<pre>";print_r(count(explode(",",$this->idate)));
-
-                for ($i=0; $i <count(explode(",",$this->idate))-1; $i++) {
-
-
-                $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `super_notice` WHERE `super_name`=:iname AND `date`=:idate AND `session`='Morning'");
-                $getdata->bindValue(':iname', @$_POST['super_name']);
-                $getdata->bindValue(':idate', @explode(",",$this->idate)[$i]);
-                $getdata->execute();
-                $data = $getdata->fetchAll(PDO::FETCH_ASSOC);
-                // echo"<pre>";print_r(explode(",",$this->idate)[$i]);print_r($_POST['super_name']);
-                // foreach (@$data as $row) {
-                    // echo"<pre>";print_r($data);
-                    $send.=str_contains(json_encode($data),"Morning") ? ' <td width="40">&radic;</td>' : ' <td width="40">-</td>';
-                    // return $send;
-                // }
-                // echo"<pre>";print_r($send);
-            }
                 break;
-                case 3:
-                    // echo"<pre>";print_r(explode(",",$this->idate));
-                    // echo"<pre>";print_r(count(explode(",",$this->idate)));
+            case 2:
 
-                    for ($i=0; $i <count(explode(",",$this->idate))-1; $i++) {
-
-
-                    $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `super_notice` WHERE `super_name`=:iname AND `date`=:idate AND `session`='Afternoon'");
+                for ($i = 0; $i < count(explode(",", $this->idate)) - 1; $i++) {
+                    $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `super_notice` WHERE `super_name`=:iname AND `date`=:idate AND `session`='Morning'");
                     $getdata->bindValue(':iname', @$_POST['super_name']);
-                    $getdata->bindValue(':idate', @explode(",",$this->idate)[$i]);
+                    $getdata->bindValue(':idate', @explode(",", $this->idate)[$i]);
                     $getdata->execute();
                     $data = $getdata->fetchAll(PDO::FETCH_ASSOC);
-                    // echo"<pre>";print_r(explode(",",$this->idate)[$i]);print_r($_POST['super_name']);
-                    // foreach (@$data as $row) {
-                        // echo"<pre>";print_r($data);
-                        $send.=str_contains(json_encode($data),"Afternoon") ? ' <td width="40">&radic;</td>' : ' <td width="40">-</td>';
-                        // return $send;
-                    // }
-                    // echo"<pre>";print_r($send);
+                    $send .= str_contains(json_encode($data), "Morning") ? ' <td width="40">&radic;</td>' : ' <td width="40">-</td>';
                 }
-                  break;
+                break;
+            case 3:
+                for ($i = 0; $i < count(explode(",", $this->idate)) - 1; $i++) {
+                    $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `super_notice` WHERE `super_name`=:iname AND `date`=:idate AND `session`='Afternoon'");
+                    $getdata->bindValue(':iname', @$_POST['super_name']);
+                    $getdata->bindValue(':idate', @explode(",", $this->idate)[$i]);
+                    $getdata->execute();
+                    $data = $getdata->fetchAll(PDO::FETCH_ASSOC);
+                    $send .= str_contains(json_encode($data), "Afternoon") ? ' <td width="40">&radic;</td>' : ' <td width="40">-</td>';
+                }
+                break;
 
             default:
-echo"Not run";
-              break;
-          }return $send;
-
+                echo "Not run";
+                break;
         }
+        return $send;
+    }
 }
 
-
-// function morningsession()
-// {
-//     $send = null;
-//     $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . $_POST['super_name'] . "'ORDER BY `date`";
-//     $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare($sql);
-//     $getdata->execute();
-//     $data = $getdata->fetchAll();
-//     foreach (@$data as $row) {
-//         // echo"<pre>";print_r($row); print_r($data);
-//         if ($row['session'] == 'Morning') {
-//             $send .= '
-//         <td width="40">
-//                     <strong>&radic;</strong>
-//                         </td>
-//         ';
-//         }
-//     }
-//     return $send;
-// }
-
-// function afternoonsession()
-// {
-//     $send = null;
-//     $sql = "SELECT * FROM `super_notice` WHERE `super_name`=" . "'" . $_POST['super_name'] . "'ORDER BY `date`";
-//     $getdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare($sql);
-//     $getdata->execute();
-//     $data = $getdata->fetchAll();
-//     foreach (@$data as $row) {
-//         // echo"<pre>";print_r($row);
-//         if ($row['session'] == 'Afternoon') {
-//             $send .= '
-//                         <td width="40">
-//                         <strong>&radic;</strong>
-//                                         </td>
-//         ';
-//         }
-//     }
-//     return $send;
-// }
 $year = date("Y");
 $super_name = @$_POST['super_name'];
 $morning_time = $_POST['morning-time'];
 $afternoon_time = $_POST['afternoon-time'];
-$cl=new cellchk();
+$cl = new cellchk();
 
 $html = '
 <table border="1" width="515">
@@ -273,25 +197,6 @@ $html = '
 
 ';
 
-// <td width="40">
-//                                 <strong>' . $row["date"] . '</strong>
-//                         </td>
-//         </tr>
-//         <tr>
-//             <td width="75">
-//                     <strong>Morning</strong>
-//             </td>
-//             <td width="40">
-//                         <strong>&radic;</strong>
-//                                         </td>
-//         </tr>
-//         <tr>
-//             <td width="75">
-//                     <strong>Afternoon</strong>
-//             </td>
-//             <td width="40">
-//             <strong>&radic;</strong>
-//                             </td>
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');
 
