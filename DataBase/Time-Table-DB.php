@@ -55,9 +55,10 @@
             $staterun = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `TimeTable` WHERE `id`=:get_id AND `date`=:get_date');
             $staterun->bindValue(':get_id', @$_POST['get_id']);
             $staterun->bindValue(':get_date', @$_POST['get_date']);
-            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM blocks');
+            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `blocks`');
+            $clear_notice = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `super_notice`');
 
-            if ($staterun->execute() && $clear_blocks->execute()) {
+            if ($staterun->execute() && $clear_blocks->execute() && $clear_notice->execute()) {
                 updateIds();
                 echo "<script>alert('Data Deleted...');</script>";
                 echo "<script>location.href='../PHP/TimeTable.php'</script>";
@@ -97,9 +98,10 @@
             $staterun->bindValue(':isession', @$_POST['isession']);
             $staterun->bindValue(':istudents_count', @$_POST['istudents_count']);
             $staterun->bindValue(':rblock', @$_POST['iblock_count']);
-            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM blocks');
+            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `blocks`');
+            $clear_notice = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `super_notice`');
 
-            if ($staterun->execute() && $clear_blocks->execute()) {
+            if ($staterun->execute() && $clear_blocks->execute() && $clear_notice->execute()) {
                 echo "<script>alert('Data Updated...');</script>";
                 echo "<script>location.href='../PHP/TimeTable.php'</script>";
             }

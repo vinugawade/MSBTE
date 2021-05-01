@@ -88,9 +88,10 @@
             $staterun->bindValue(':department', @$_POST['idepartment']);
             $staterun->bindValue(':year_sem', @$_POST['iyear_sem']);
             $staterun->bindValue(':id', @$_POST['get_id']);
-            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM blocks');
+            $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `blocks`');
+            $clear_notice = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `super_notice`');
 
-            if ($staterun->execute() && $clear_blocks->execute()) {
+            if ($staterun->execute() && $clear_blocks->execute() && $clear_notice->execute()) {
                 echo "<script>alert('Data Updated...');</script>";
                 echo "<script>location.href='../PHP/Students Form.php'</script>";
             }

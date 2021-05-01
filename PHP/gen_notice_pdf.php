@@ -84,7 +84,8 @@
                                                         <div class="modal-body">
 
                                                             <form action="./Generate_PDF.php" target="_blank" method="POST">
-                                                                <input type="hidden"  class="form-control"  name="super_name" id="s_name">
+                                                            <input type="hidden"  class="form-control"  name="super_name" id="s_name">
+                                                                <input type="hidden"  class="form-control"  name="super_dept" id="s_dept">
                                                                 <div class="mb-3">
                                                                     <label for="get-time-morning" class="col-form-label">Morning Time:</label>
                                                                     <input type="time" name="morning-time" class="form-control"  required>

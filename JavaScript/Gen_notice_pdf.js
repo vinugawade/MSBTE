@@ -20,5 +20,6 @@ $(document).ready(function() {
 for (i = 1; i < document.getElementById('Notice-Table-View').rows.length; i++) {
     document.getElementById('Notice-Table-View').rows[i].addEventListener("click", function() {
         document.getElementById('s_name').value = this.cells[1].innerHTML;
+        document.getElementById('s_dept').value = this.cells[2].innerHTML;
     });
 }

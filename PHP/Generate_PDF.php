@@ -97,6 +97,7 @@ class cellchk
 
 $year = date("Y");
 $super_name = @$_POST['super_name'];
+$super_dept = @$_POST['super_dept'];
 $morning_time = $_POST['morning-time'];
 $afternoon_time = $_POST['afternoon-time'];
 $cl = new cellchk();
@@ -106,7 +107,7 @@ $html = '
     <tr>
         <td>
             <p align="center">
-                <strong>Shri Yashwantrao Bhonsale Education Society &rsquo;s</strong>
+                <strong>Shri Yashwantrao Bhonsale Education Society&rsquo;s</strong>
             </p>
             <h2 align="center">
                 <strong>
@@ -134,7 +135,7 @@ $html = '
         <strong>' . $super_name . ',</strong>
     </li>
 </ol>
-<p>Lecturer, Computer Department,</p>
+<p>Lecturer, ' . $super_dept . ' Department,</p>
 <p>YBP, Sawantwadi.</p>
 <p>
     <strong>Subject: -Appointment as Supervisor for MSBTE Summer/Winter ' . $year . '  Examination.</strong>
@@ -201,7 +202,7 @@ $html = '
 $pdf->writeHTML($html, true, false, true, false, '');
 
 //Close and output PDF document
-$pdf->Output('Notice.pdf', 'I');
+$pdf->Output('Supervisor-Notice.pdf', 'I');
 
 //============================================================+
 // END OF FILE
