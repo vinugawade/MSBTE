@@ -126,6 +126,7 @@
                             $selectblock->bindValue(':isession', @$_GET['session']);
                             $selectblock->execute();
                             $data = $selectblock->fetchAll();
+                            $i=1;
                             foreach (@$data as $row) {
                             ?>
                                 <tr>
@@ -158,14 +159,41 @@
                                         }
                                         ?></td>
                                     <td>
-                                        <form action="./Supervisor_report.php" method="POST">
-                                            <input type="hidden" name="" value="<?php echo $row['block_no']; ?>">
-                                            <input type="hidden" name="date" value="<?php echo $row['ex_date']; ?>">
+                                        <form action="./Gen_attendance_pdf.php" id="submitForm" target="_blank" method="POST">
+                                            <input type="hidden" name="block_no" value="<?php echo $row['block_no']; ?>">
+                                            <input type="hidden" name="ex_date" value="<?php echo $row['ex_date']; ?>">
                                             <input type="hidden" name="session" value="<?php echo $row['session']; ?>">
-                                            <input type="hidden" name="" value="<?php echo $row['start']; ?>">
-                                            <input type="hidden" name="" value="<?php echo $row['end']; ?>">
-                                            <input type="hidden" name="" value="<?php echo $row['supervisor']; ?>">
-                                            <button class="btn btn-danger btn-block btn-sm mt-1 w-100" type="submit" name="view"><span class="far fa-eye fa-sm">View</span></button>
+                                            <input type="hidden" name="start" value="<?php echo $row['start']; ?>">
+                                            <input type="hidden" name="end" value="<?php echo $row['end']; ?>">
+                                            <input type="hidden" name="supervisor" value="<?php echo $row['supervisor']; ?>">
+                                            <button type="button" name="view" id="view<?php echo $i;?>" onclick="checkDept(<?php echo $i;?>)"class="btn btn-primary w-100 mt-1 btn-sm"><span class="far fa-eye fa-sm">&nbsp;&nbsp;View</span></button>
+
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="Choose Department" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Choose Department</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- <form action="./Generate_PDF.php" target="_blank" method="POST"> -->
+                                                                <div class="mb-3">
+                                                                    <label for="get-time-morning" class="col-form-label">Select Department:</label>
+                                                                    <select class='form-select form-select-sm p-1 mx-1' name="dept" id="dept" required>
+                                                                        <option value="" selected>Select Department</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary">Continue</button>
+                                                                </div>
+                                                            <!-- </form> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </form>
                                         <form action="../DataBase/Assign-Block-DB.php#update" method="POST">
                                             <input type="hidden" name="ublock_no" id="ublock_no" value="<?php echo $row['block_no']; ?>">
@@ -175,7 +203,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php $i++;} ?>
                         </tbody>
                     </table>
 
