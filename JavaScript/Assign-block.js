@@ -58,9 +58,11 @@ function checkDept(r) {
             dept.forEach(e => {
                 document.getElementById("dept").innerHTML+="<option value="+e+">"+e+"</option>";
             });
+            document.getElementById("supervisor").value=document.getElementById("Blocks-Table-View").rows[r+1].cells[6].innerHTML;
             $("#exampleModal").modal("show");
           }else{
               document.getElementById("dept")[0].value=dept[0];
+              document.getElementById("supervisor").value=document.getElementById("Blocks-Table-View").rows[r+1].cells[6].innerHTML;
               document.getElementById("submitForm").submit();
           }
       } else {
