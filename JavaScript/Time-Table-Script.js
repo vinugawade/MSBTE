@@ -1,14 +1,3 @@
-// function check() {
-//     check = confirm("Are You Sure?");
-//     if (check == true) {
-//         alert(check);
-//         // window.location = '../DataBase/Time-Table-DB.php#delete';
-//         window.location.href = 'http://www.google.com';
-//     } else {
-//         alert(check);
-//         window.location = '../PHP/TimeTable.php';
-//     }
-// }
 
 // TIME - TABLE GET ROW
 for (i = 1; i < document.getElementById('Time-Table-View').rows.length; i++) {
@@ -122,12 +111,12 @@ function random_function() {
 // DYNAMIC DROPDOWNS
 document.getElementById("students_count").addEventListener('input', function() {
     var students = document.getElementById("students_count").value;
-    var count = (students / 5);
+    var count = (students /30);
     document.getElementById('block_count').value = Math.ceil(count);
 });
 
 document.getElementById("block_count").addEventListener('input', function() {
     var students = document.getElementById("students_count").value;
-    var count = (students / 5);
+    var count = (students /30);
     document.getElementById('block_count').value = Math.ceil(count);
 });

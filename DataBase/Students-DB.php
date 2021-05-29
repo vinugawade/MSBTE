@@ -1,20 +1,31 @@
+<?php include './Prime_DB_Creator.php'; ?>
 <div id="insert">
     <?php
     if (isset($_POST['idone'])) {
+        Create_Tables_First();
         insert();
     }
     function insert()
     {
-
         $name = @$_POST["istudent_name"];
         $select = (new PDO("sqlite:./ExamDB.db"))->prepare('SELECT * FROM `Students` WHERE `enroll_no` = :ienrollment_no');
         $select->bindValue(':ienrollment_no', @$_POST['ienrollment_no']);
         $select->execute();
         $rows = $select->fetchAll(PDO::FETCH_ASSOC);
         if ($rows) {
-            echo "<script>alert('Enrollmet Number Exist.');</script>";
+            echo "<script>alert('Enrollment Number is Exist.');</script>";
             echo "<script>location.href='../PHP/Students Form.php'</script>";
         } else {
+
+            $select = (new PDO("sqlite:./ExamDB.db"))->prepare('SELECT * FROM `Students` WHERE `seat_no` = :iseatno');
+            $select->bindValue(':iseatno', @$_POST['iseat_no']);
+            $select->execute();
+            $rows = $select->fetchAll(PDO::FETCH_ASSOC);
+            if ($rows) {
+                echo "<script>alert('Seat Number is Exist.');</script>";
+                echo "<script>location.href='../PHP/Students Form.php'</script>";
+            } else {
+
             try {
                 $staterun = (new PDO("sqlite:./ExamDB.db"))->prepare('INSERT INTO `Students` VALUES (:icount, :istudent_name, :iseat_no, :ienrollment_no, :idepartment, :iyear_sem)');
                 $staterun->bindValue(':icount', getRowCount());
@@ -35,6 +46,7 @@
             }
         }
     }
+}
     ?>
 </div>
 <div id="delete">
@@ -42,10 +54,6 @@
     if (isset($_POST['delete'])) {
         delete();
     }
-    // else{
-    //     echo"<script>alert('Error to Delete...');</script>";
-    //     echo"<script>location.href='../PHP/Students Form.php'</script>";
-    // }
     function delete()
     {
         try {
@@ -70,12 +78,9 @@
 <div id="update">
     <?php
     if (isset($_POST['update'])) {
+        Create_Tables_First();
         update();
     }
-    // else{
-    //     echo"<script>alert('Error to Updated...');</script>";
-    //     echo"<script>location.href='../PHP/Students Form.php'</script>";
-    // }
     function update()
     {
 
@@ -92,12 +97,11 @@
             $clear_notice = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `super_notice`');
 
             if ($staterun->execute() && $clear_blocks->execute() && $clear_notice->execute()) {
-                echo "<script>alert('Data Updated...');</script>";
-                echo "<script>location.href='../PHP/Students Form.php'</script>";
+                echo "<script>alert('Data Updated...');location.href='../PHP/Students Form.php';</script>";
             }
         } catch (PDOException $d) {
             echo "Exception: " . $d;
-            echo "<script>alert('Error...');</script>";
+            echo "<script>alert('Value Already Exist...');location.href='../PHP/Students Form.php';</script>";
             $staterun->errorCode();
         }
     }

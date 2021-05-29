@@ -20,7 +20,7 @@
     <header class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid d-flex">
-                <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+            <h2 class="p-0 m-0"> <a class="navbar-brand me-auto p-0 m-0 align-self-center" href="../index.html"> <span><img src="../Img/msbte.png" width="50" height="50" class="d-inline-block align-self-center" alt="MSBTE Logo"></span> MSBTE</a></h2>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,7 +43,7 @@
         <div class="container-fluid p-0 m-0">
             <div class="row p-0 m-0">
                 <div class="col-lg-12 col-md-12 form-container m-0 p-0">
-                    <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box mx-3">
+                    <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box mx-3 m-0">
                         <div class="logo mb-3">
                             <div class="text-center">
                                 <img src="../Img/Head-Img.png" width="150px">
@@ -92,6 +92,9 @@
                                     <button type="submit" name="submit" class="btn btn-lg btn-primary font-weight-bold h2 btn-block"><i class="fas fa-check fa-1x" aria-hidden="true"></i>&nbsp;Check</button>
                                 </div>
                             </div>
+                            <footer class="mt-3 pt-3 text-white-50 text-center">
+                                <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
+                            </footer>
                         </form>
 
                     </div>
@@ -177,7 +180,6 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <!-- <form action="./Generate_PDF.php" target="_blank" method="POST"> -->
                                                                 <div class="mb-3">
                                                                     <label for="get-time-morning" class="col-form-label">Select Department:</label>
                                                                     <select class='form-select form-select-sm p-1 mx-1' name="dept" id="dept" required>
@@ -187,7 +189,6 @@
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-primary">Continue</button>
                                                                 </div>
-                                                            <!-- </form> -->
                                                         </div>
                                                     </div>
                                                 </div>

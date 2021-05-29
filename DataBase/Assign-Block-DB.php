@@ -1,6 +1,9 @@
+<?php include './Prime_DB_Creator.php'; ?>
+
 <div id="insert">
     <?php
     if (isset($_POST['submit'])) {
+        Create_Tables_First();
         insert();
     }
     function insert_into_block($block_count)
@@ -14,7 +17,6 @@
 
 
         for ($i = 1; $i <= $block_count; $i++) {
-
 
             $get_dept = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT  `department` FROM `Students` WHERE `seat_no` BETWEEN ' . $start . ' AND ' . $end . ' GROUP BY `department` ORDER BY `seat_no` ASC');
             $get_dept->execute();
@@ -41,7 +43,7 @@
             $check->execute();
             $check_data = $check->fetchAll();
 
-            $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT `session`,cast(round(SUM(`students_count`+0.5)/5) AS INT) AS `Required_block`, SUM(students_count) As `students_count` FROM `TimeTable` WHERE `date`=:idate AND `session`=:isession');
+            $select = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare('SELECT `session`,cast(round(SUM(`students_count`+0.5)/30) AS INT) AS `Required_block`, SUM(students_count) As `students_count` FROM `TimeTable` WHERE `date`=:idate AND `session`=:isession');
             $select->bindValue(':idate', @$_POST['date']);
             $select->bindValue(':isession', @$_POST['session']);
             $select->execute();
@@ -51,7 +53,6 @@
             }
             if ($_POST['session'] == 'Morning') {
                 if (@$fetch_data[0][1] == @$check_data[1][1]) {
-                    // echo $_POST['session'] . "=" . $block_count . "=" . $check_data[1][1];
                     echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                 } else {
                     //INSERT
@@ -61,8 +62,6 @@
                 }
             } else {
                 if (@$fetch_data[0][1] == @$check_data[0][1]) {
-                    // echo  $_POST['session'] . "=" . $block_count . "=" . $check_data[0][1]."=".$fetch_data[0][1];
-                    // echo"<pre>";print_r($fetch_data);print_r($check_data);
                     echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['date'] . "&session=" . $_POST['session'] . "')</script>";
                 } else {
                     //INSERT
@@ -79,40 +78,10 @@
     ?>
 </div>
 
-<!-- <div id="delete">
-    <?php
-    // if (isset($_POST['delete'])) {
-    //     delete();
-    // }
-    // // else{
-    // //     echo"<script>alert('Error to Delete...');</script>";
-    // //     echo"<script>location.href='../PHP/TimeTable.php'</script>";
-    // // }
-    // function delete()
-    // {
-    //     try {
-
-    //         $staterun = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM `TimeTable` WHERE `id`=:get_id AND `date`=:get_date');
-    //         $staterun->bindValue(':get_id', @$_POST['get_id']);
-    //         $staterun->bindValue(':get_date', @$_POST['get_date']);
-
-    //         if ($staterun->execute()) {
-    //             updateIds();
-    //             echo "<script>alert('Data Deleted...');</script>";
-    //             echo "<script>location.href='../PHP/TimeTable.php'</script>";
-    //         }
-    //     } catch (PDOException $d) {
-    //         echo "Exception: " . $d;
-    //         echo "<script>alert('Error...');</script>";
-    //         $staterun->errorCode();
-    //     }
-    // }
-    ?>
-</div> -->
-
 <div id="update">
     <?php
     if (isset($_GET['update'])) {
+        Create_Tables_First();
         update();
     }
     if (isset($_POST['update'])) {
@@ -166,7 +135,6 @@
         } catch (PDOException $d) {
             echo "Exception: " . $d;
             echo "<script>alert('Error...');</script>";
-            // $staterun->errorCode();
         }
     }
 
@@ -179,7 +147,12 @@
             $updatesuper->bindValue(':iex_date', @$_POST['uex_date']);
             $updatesuper->bindValue(':isession', @$_POST['usession']);
 
-            if ($updatesuper->execute()) {
+            $deletesuper = (new PDO("sqlite:./ExamDB.db"))->prepare("DELETE FROM `super_notice` WHERE `block_no`=:iblock_no AND `date`=:iex_date AND `session`=:isession");
+            $deletesuper->bindValue(':iblock_no', @$_POST['ublock_no']);
+            $deletesuper->bindValue(':iex_date', @$_POST['uex_date']);
+            $deletesuper->bindValue(':isession', @$_POST['usession']);
+
+            if ($updatesuper->execute() and $deletesuper->execute()) {
                 echo "<script>alert('Now Update Supvervisor.');</script>";
                 echo "<script>window.location.assign('../PHP/Assign_block.php?date=" . $_POST['uex_date'] . "&session=" . $_POST['usession'] . "')</script>";
             }

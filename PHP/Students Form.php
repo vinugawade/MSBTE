@@ -20,7 +20,7 @@
     <header class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid d-flex">
-                <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+            <h2 class="p-0 m-0"> <a class="navbar-brand me-auto p-0 m-0 align-self-center" href="../index.html"> <span><img src="../Img/msbte.png" width="50" height="50" class="d-inline-block align-self-center" alt="MSBTE Logo"></span> MSBTE</a></h2>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,21 +55,21 @@
                             <div class="form-group row">
                                 <label for="istudent_name" class="col-md-12 flabel"><i class="fas fa-file-signature"></i> Student Name:</label>
                                 <div class="col-md-12">
-                                    <input class="form-control my-1" type="text" name="istudent_name" id="student_name" placeholder="Enter Your Name" pattern="^[A-Z a-z]+$" required>
+                                    <input class="form-control my-1" type="text" name="istudent_name" id="student_name" placeholder="Enter Your Name" required pattern="^[a-zA-Z\s]+$">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="iseat_no" class="col-md-12 flabel"><i class="fas fa-book-reader"></i> Seat Number:</label>
                                 <div class="col-md-12">
-                                    <input class="form-control my-1" type="number" name="iseat_no" id="seat_no" placeholder="Enter Seat No" pattern="\b[0-9]{6,6}\b" required>
+                                    <input class="form-control my-1" type="number" name="iseat_no" id="seat_no" placeholder="Enter Seat No" required  min="111111" max="999999">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="ienrollment_no" class="col-md-12 flabel"><i class="fas fa-book-reader"></i>Enrollment Number:</label>
                                 <div class="col-md-12">
-                                    <input class="form-control my-1" type="number" name="ienrollment_no" id="enrolment_no" placeholder="Enter Enrollment No" pattern="[0-9]{10}" required>
+                                    <input class="form-control my-1" type="number" name="ienrollment_no" id="enrolment_no" placeholder="Enter Enrollment No" required  min="1111111111" max="9999999999">
                                 </div>
                             </div>
 
@@ -111,11 +111,15 @@
                                     </form>
                                 </div>
                             </div>
+                            <footer class="mt-3 pt-3 text-white-50 text-center">
+                                <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
+                            </footer>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
     <section class="col-lg-6 image-container px-lg-0 p-0 m-0 overflow-auto">
         <div class="container-fluid p-0 m-0">

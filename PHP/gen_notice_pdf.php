@@ -20,7 +20,7 @@
     <header class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid d-flex">
-                <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+            <h2 class="p-0 m-0"> <a class="navbar-brand me-auto p-0 m-0 align-self-center" href="../index.html"> <span><img src="../Img/msbte.png" width="50" height="50" class="d-inline-block align-self-center" alt="MSBTE Logo"></span> MSBTE</a></h2>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -75,37 +75,39 @@
 
 
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Select Reporting Time</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Select Reporting Time</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
 
-                                                            <form action="./Generate_PDF.php" target="_blank" method="POST">
-                                                            <input type="hidden"  class="form-control"  name="super_name" id="s_name">
-                                                                <input type="hidden"  class="form-control"  name="super_dept" id="s_dept">
-                                                                <div class="mb-3">
-                                                                    <label for="get-time-morning" class="col-form-label">Morning Time:</label>
-                                                                    <input type="time" name="morning-time" class="form-control"  required>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="get-time-afternoon" class="col-form-label">Afternoon Time:</label>
-                                                                    <input type="time" name="afternoon-time" class="form-control" required>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-primary">Continue</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <form action="./Generate_PDF.php" target="_blank" method="POST">
+                                            <input type="hidden" class="form-control" name="super_name" id="s_name">
+                                            <input type="hidden" class="form-control" name="super_dept" id="s_dept">
+                                            <div class="mb-3">
+                                                <label for="get-time-morning" class="col-form-label">Morning Time:</label>
+                                                <input type="time" name="morning-time" class="form-control" required>
                                             </div>
-
+                                            <div class="mb-3">
+                                                <label for="get-time-afternoon" class="col-form-label">Afternoon Time:</label>
+                                                <input type="time" name="afternoon-time" class="form-control" required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Continue</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+    <footer class="mt-3 pt-3 text-white-50 text-center">
+        <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
+    </footer>
     </div>
     </main>
 </body>

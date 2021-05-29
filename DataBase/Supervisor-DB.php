@@ -1,12 +1,10 @@
+<?php include './Prime_DB_Creator.php'; ?>
 <div id="insert">
 <?php
 if(isset($_POST['idone'])){
+    Create_Tables_First();
     insert();
 }
-// else{
-//     echo"<script>alert('Error to Insert...');</script>";
-//     echo"<script>location.href='../PHP/SupervisorForm.php'</script>";
-// }
 function insert(){
     $name=@$_POST["isupervisor_name"];
     $select = (new PDO("sqlite:./ExamDB.db"))->prepare('SELECT * FROM `Supervisor` WHERE `supervisor_name` = :isupervisor_name AND `department`=:department');
@@ -45,10 +43,6 @@ function insert(){
 if(isset($_POST['delete'])){
     delete();
 }
-// else{
-//     echo"<script>alert('Error to Delete...');</script>";
-//     echo"<script>location.href='../PHP/SupervisorForm.php'</script>";
-// }
 function delete(){
     try{
 
@@ -73,12 +67,9 @@ function delete(){
 <div id="update">
 <?php
 if(isset($_POST['update'])){
+    Create_Tables_First();
     update();
 }
-// else{
-//     echo"<script>alert('Error to Updated...');</script>";
-//     echo"<script>location.href='../PHP/SupervisorForm.php'</script>";
-// }
     function update(){
         $select = (new PDO("sqlite:./ExamDB.db"))->prepare('SELECT * FROM `Supervisor` WHERE `supervisor_name` = :isupervisor_name AND `department`=:department');
         $select->bindValue(':isupervisor_name',@$_POST['isupervisor_name']);

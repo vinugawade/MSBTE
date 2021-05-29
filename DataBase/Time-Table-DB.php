@@ -1,12 +1,10 @@
+<?php include './Prime_DB_Creator.php'; ?>
 <div id="insert">
     <?php
     if (isset($_POST['idone'])) {
+        Create_Tables_First();
         insert();
     }
-    // else{
-    //     echo"<script>alert('Error to Insert...');</script>";
-    //     echo"<script>location.href='../PHP/TimeTable.php'</script>";
-    // }
     function insert()
     {
         try {
@@ -24,8 +22,6 @@
             $staterun->bindValue(':isession', @$_POST['isession']);
             $staterun->bindValue(':istudents_count', @$_POST['istudents_count']);
             $staterun->bindValue(':iblock_count', @$_POST['iblock_count']);
-            // $clear_blocks = (new PDO("sqlite:./ExamDB.db"))->prepare('DELETE FROM blocks');
-            // && $clear_blocks->execute()
             if ($staterun->execute()) {
 
                 echo "<script>alert('Data Inserted...');</script>";
@@ -44,10 +40,6 @@
     if (isset($_POST['delete'])) {
         delete();
     }
-    // else{
-    //     echo"<script>alert('Error to Delete...');</script>";
-    //     echo"<script>location.href='../PHP/TimeTable.php'</script>";
-    // }
     function delete()
     {
         try {
@@ -74,12 +66,9 @@
 <div id="update">
     <?php
     if (isset($_POST['update'])) {
+        Create_Tables_First();
         update();
     }
-    // else{
-    //     echo"<script>alert('Error to Updated...');</script>";
-    //     echo"<script>location.href='../PHP/TimeTable.php'</script>";
-    // }
     function update()
     {
 
@@ -120,10 +109,8 @@ function getRowCount()
     $icount = (new PDO("sqlite:./ExamDB.db"))->query("SELECT COUNT(*) FROM (SELECT * FROM `TimeTable`)");
     $icount = $icount->fetchColumn();
     if ($icount == 0) {
-        // echo "Exist:".$icount ."<br>";
         return $icount = 1;
     } else if ($icount > 0) {
-        // echo "Exist:".$icount ."<br>";
         return $icount = $icount + 1;
     }
 }

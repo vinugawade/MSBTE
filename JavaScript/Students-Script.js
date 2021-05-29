@@ -7,7 +7,7 @@ for (i = 1; i < document.getElementById('Student-Table-View').rows.length; i++) 
         document.getElementById("enrolment_no").value = this.cells[3].innerHTML;
         document.getElementById("department").value = this.cells[4].innerHTML;
         document.getElementById("year_sem").value = this.cells[5].innerHTML;
-        confirm("Now Update Data.");
+        // confirm("Now Update Data.");
     });
 }
 // STUDENTS - TABLE GET ROW

@@ -14,15 +14,14 @@
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <!-- CSS -->
-    <link rel="stylesheet" href="../CSS/TimeTable.css">
+
 
 </head>
 <body style="background: #7F7FD5; background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);   background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5);">
 <header class="container-fluid p-0">
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
                 <div class="container-fluid d-flex">
-                    <a class="navbar-brand me-auto" href="../index.html">MSBTE</a>
+                <h2 class="p-0 m-0"> <a class="navbar-brand me-auto p-0 m-0 align-self-center" href="../index.html"> <span><img src="../Img/msbte.png" width="50" height="50" class="d-inline-block align-self-center" alt="MSBTE Logo"></span> MSBTE</a></h2>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -212,8 +211,9 @@
             </div>
         </div>
     </section>
-    <footer>
 
+    <footer class="mt-5 pt-5 text-white-50 text-center">
+        <p>Design & Develop By <a href="http://sybespolytechnic.com/computer-department.php?id=1" target="_blank" class="text-white ">Computer Dept.</a> of <a href="http://sybespolytechnic.com/" target="_blank" class="text-white "> @YBP</a>.</p>
     </footer>
     <!-- JavaScript -->
     <script type=" text/javascript" src="../JavaScript/Time-Table-Script.js" charset="utf-8"></script>
