@@ -163,8 +163,8 @@
                                             <input type="hidden" name="block_no" value="<?php echo $row['block_no']; ?>">
                                             <input type="hidden" name="ex_date" value="<?php echo $row['ex_date']; ?>">
                                             <input type="hidden" name="session" value="<?php echo $row['session']; ?>">
-                                            <input type="hidden" name="start" value="<?php echo $row['start']; ?>">
-                                            <input type="hidden" name="end" value="<?php echo $row['end']; ?>">
+                                            <input type="hidden" name="start" id="start" value="<?php echo $row['start']; ?>">
+                                            <input type="hidden" name="end" id="end" value="<?php echo $row['end']; ?>">
                                             <input type="hidden" name="supervisor" id="supervisor" value="<?php echo $row['supervisor']; ?>">
                                             <button type="button" name="view" id="view<?php echo $i;?>" onclick="checkDept(<?php echo $i;?>)"class="btn btn-primary w-100 mt-1 btn-sm"><span class="far fa-eye fa-sm">&nbsp;&nbsp;View</span></button>
 

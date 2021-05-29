@@ -54,21 +54,29 @@ $session=@$_POST["session"];
 $course_name=@$_POST["dept"];
 
 $selectdata = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT `subject`,`year_sem`,`scheme` FROM `TimeTable` WHERE `date`=:idate AND `session`=:isession AND `department`=:idept");
-$selectdata->bindValue(':idate', @$_POST["ex_date"]);
-$selectdata->bindValue(':isession', @$_POST["session"]);
-$selectdata->bindValue(':idept', @$_POST["dept"]);
-$selectdata->execute();
+$selectdata->execute([':idate'=> @$_POST["ex_date"],':isession'=> @$_POST["session"],':idept'=> @$_POST["dept"]]);
 $data = $selectdata->fetchAll();
-// echo"<pre>";print_r($data);
 $subject=$data[0]['subject'];
 $scheme=$data[0]['scheme'];
 $sem=$data[0]['year_sem'];
 $sub_code= (int) filter_var($subject, FILTER_SANITIZE_NUMBER_INT);
 $dep=array("Computer"=>"CO","Mechanical"=>"ME","Civil"=>"CE","Electrical"=>"EE");
-// $dep=($subject=='Computer' ?"CO": $subject=="Mechanical")? "ME" : $subject=="Civil" ? "CE" : $subject=="Electrical" ? "EE" : "None";
 $course_code=$dep[$course_name]."-".$sem[-1]."-".$scheme[0];
-// echo"<pre>";print_r($sub_code);
-// $html = " $_POST[block_no] - $_POST[ex_date] - $_POST[session] - ".substr(strval($_POST['ex_date']),0,4)." - $_POST[supervisor] - $_POST[dept] ";
+
+
+$select_seat_no = (new PDO("sqlite:../DataBase/ExamDB.db"))->prepare("SELECT * FROM `Students` WHERE `department`=:idept AND `year_sem`=:iyear_sem AND `seat_no` BETWEEN :istart AND :iend");
+$select_seat_no->bindValue(':idept', $course_name);
+$select_seat_no->bindValue(':iyear_sem', $sem);
+$select_seat_no->bindValue(':istart', @$_POST["start"]);
+$select_seat_no->bindValue(':iend', @$_POST["end"]);
+$select_seat_no->execute([':idept'=>$course_name,':iyear_sem'=>$sem,':istart'=> @$_POST["start"],':iend'=> @$_POST["end"]]);
+
+// echo $course_name."  ".$sem."  ".$_POST["start"]."  ".$_POST["end"];
+
+$fetch_data = $select_seat_no->fetchAll();
+
+// echo"<pre>";print_r($fetch_data);
+
 $html='
 <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maharashtra State Board of Technical Education, Mumbai </strong>
@@ -79,56 +87,30 @@ $html='
 <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supervisor Report </strong>
 </p>
-<strong>
-<table>
-<tr><td style="text-align:left;">Exam : Summer/Winter '.$year.'</td><td style="text-align:left;">Institute Code: 1742</td></tr>
-<tr><td style="text-align:left;">Course/Year/Semester Master : </td><td style="text-align:left;">Session: '.$session.'</td></tr>
-<tr><td style="text-align:left;">Course Name :'.$course_name.' </td><td style="text-align:left;">Course Code :'.$course_code.'</td></tr>
-<tr><td style="text-align:left;">Subject : '.$subject.' </td><td style="text-align:left;">Subject Code: '.$sub_code.'</td></tr>
-<tr><td style="text-align:left;">Date: '.$date.'</td><td style="text-align:left;">Name of Supervisor: '.$supername.'</td></tr>
-</table>
-</strong><br>
+
+<table cellpadding="2">
+<tr><td style="text-align:left;"><strong>Exam : Summer/Winter </strong>'.$year.'</td><td style="text-align:left;"><strong>Institute Code:</strong> 1742</td></tr>
+<tr><td style="text-align:left;"><strong>Session:</strong> '.$session.' </td><td style="text-align:left;"><strong>Course Name :</strong>'.$course_name.' </td></tr>
+<tr><td style="text-align:left;"><strong>Course Code :</strong>'.$course_code.'</td><td style="text-align:left;"><strong>Subject : </strong>'.$subject.' </td></tr>
+<tr><td style="text-align:left;"><strong>Subject Code: </strong>'.$sub_code.'</td><td style="text-align:left;"><strong>Date:</strong> '.$date.'</td></tr>
+<tr><td colspan="2" style="text-align:left;"><strong>Name of Supervisor:</strong> '.$supername.'</td><td style="text-align:left;"></td></tr>
+</table><br>
 
 <style>
 td{text-align:center;}
 </style>
 <strong>
-<table border="1"  cellpadding="2">
+<table border="1" cellpadding="2">
 <tr><td width="30">Sr.No</td><td width="100">Exam Seat No</td><td width="100">Main Answer Book No</td><td width="130">Supplement Number</td><td width="130">Sign</td></tr>
-<tr><td width="30">1 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">2 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">3 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">4 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">5 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">6 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">7 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">8 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">9 </td>   <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">10</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">11</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">12</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">13</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">14</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">15</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">16</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">17</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">18</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">19</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">20</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">21</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">22</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">23</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">24</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">25</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">26</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">27</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">28</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">29</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-<tr><td width="30">30</td>  <td width="100">  </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>
-</table>
+';
+for ($i=1; $i<=30; $i++) {
+$html.='<tr><td width="30">'.$i.' </td>   <td width="100"> '.@$fetch_data[$i-1]["seat_no"].' </td>            <td width="100">  </td>                   <td width="130">  </td>                 <td width="130">  </td></tr>';
+
+}
+$html.='</table>
 </strong>
 <p>
-    <strong>Total Present :__________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Absent:____________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total:_____________ &nbsp;</strong>
+    <strong>Total Present :__________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Absent:____________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.count($fetch_data).' &nbsp;
 </p>
 <p></p>
 <table>
