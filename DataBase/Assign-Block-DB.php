@@ -12,7 +12,7 @@
         $student->execute();
         $list = $student->fetchAll();
         $start = $list[0]['seat_no'];
-        $end = $list[0]['seat_no'] + 4;
+        $end = $list[0]['seat_no'] + 29;
         $limit = $list[0]['t'];
 
 
@@ -28,10 +28,17 @@
             $insertblock->bindValue(":iend", $end);
             $insertblock->bindValue(':idate', @$_POST['date']);
             $insertblock->bindValue(':isession', @$_POST['session']);
+            if(strlen(str_replace("department", "", preg_replace('/[^A-Za-z0-9\-]/', ' ', json_encode($dept))))==2){
+                $insertblock->bindValue(':dept', "Ignore If it's Gives Error.");
+
+            }else{
+        // echo strlen(str_replace("department", "", preg_replace('/[^A-Za-z0-9\-]/', ' ', json_encode($dept)))).',';
+
             $insertblock->bindValue(':dept', str_replace("department", "", preg_replace('/[^A-Za-z0-9\-]/', ' ', json_encode($dept))));
+        }
             $insertblock->execute();
-            $start += 5;
-            $end += 5;
+            $start += 30;
+            $end += 30;
         }
         return true;
     }
